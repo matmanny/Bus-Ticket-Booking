@@ -1,0 +1,35 @@
+.bus-list h2 {
+  margin-bottom: 1rem;
+}
+
+.buses {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.bus-card {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 250px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.bus-card img {
+  width: 80px;
+  height: 50px;
+  margin-right: 1rem;
+}
+
+.bus-info h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.bus-info p {
+  margin: 0.2rem 0 0 0;
+  color: gray;
+}

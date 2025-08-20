@@ -1,81 +1,59 @@
 import React, { useState } from "react";
+import BusList from "./Pages/buslist";
+import "./App.css";
 
 function App() {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [date, setDate] = useState("");
+  const [availableBuses, setAvailableBuses] = useState([]);
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    alert(`Searching buses from ${from} to ${to} on ${date}`);
+  const buses = [
+    { name: "Express 101", seats: 32 },
+    { name: "City Line 202", seats: 18 },
+  ];
+
+  const handleSearch = () => {
+    // For now, just return all buses, you can filter by route/date later
+    setAvailableBuses(buses);
   };
 
   return (
-    <div style={styles.container}>
-      <h1 style={styles.title}>🚌 Bus Ticket Booking</h1>
-      <form onSubmit={handleSearch} style={styles.form}>
-        <input
-          type="text"
-          placeholder="From"
-          value={from}
-          onChange={(e) => setFrom(e.target.value)}
-          style={styles.input}
-          required
-        />
-        <input
-          type="text"
-          placeholder="To"
-          value={to}
-          onChange={(e) => setTo(e.target.value)}
-          style={styles.input}
-          required
-        />
-        <input
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          style={styles.input}
-          required
-        />
-        <button type="submit" style={styles.button}>
-          Search Buses
-        </button>
-      </form>
+    <div className="app">
+      <header>
+        <h1>Bus Ticket Booking</h1>
+        <nav>
+          <a href="#">Home</a>
+          <a href="#">About</a>
+        </nav>
+      </header>
+
+      <main>
+        <div className="search-box">
+          <input
+            type="text"
+            placeholder="From"
+            value={from}
+            onChange={(e) => setFrom(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="To"
+            value={to}
+            onChange={(e) => setTo(e.target.value)}
+          />
+          <input
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+          <button onClick={handleSearch}>Search Buses</button>
+        </div>
+
+        {availableBuses.length > 0 && <BusList buses={availableBuses} />}
+      </main>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    textAlign: "center",
-    marginTop: "50px",
-    fontFamily: "Arial, sans-serif",
-  },
-  title: {
-    fontSize: "32px",
-    marginBottom: "20px",
-    color: "#333",
-  },
-  form: {
-    display: "flex",
-    justifyContent: "center",
-    gap: "10px",
-  },
-  input: {
-    padding: "10px",
-    fontSize: "16px",
-    border: "1px solid #ccc",
-    borderRadius: "8px",
-  },
-  button: {
-    padding: "10px 20px",
-    fontSize: "16px",
-    backgroundColor: "#007bff",
-    color: "white",
-    border: "none",
-    borderRadius: "8px",
-    cursor: "pointer",
-  },
-};
 
 export default App;
